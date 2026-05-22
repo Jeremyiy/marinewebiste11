@@ -1,0 +1,260 @@
+/* ========================= GLOBAL RESET ========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Press Start 2P", system-ui;
+  background-color: #0d1b2a;
+  color: #ffffff;
+}
+
+/* ========================= LAYOUT ========================= */
+
+.conservation-page {
+  min-height: 100vh;   
+  display: flex;
+  flex-direction: column;
+}
+
+.conservation-page-main {
+  flex: 1;
+
+  padding: clamp(20px, 5vw, 40px);
+}
+
+
+/* ========================= NAV ========================= */
+nav {
+  background-color: #1b263b;
+  padding: clamp(10px, 2vw, 14px) clamp(16px, 4vw, 32px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 4px solid #39545c;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+}
+
+.logo {
+  height: clamp(26px, 5vw, 36px);
+}
+
+.site-name {
+  font-size: clamp(10px, 3vw, 18px);
+}
+
+.accent {
+  color: #40E0D0;
+}
+
+.nav-right {
+  display: flex;
+  gap: clamp(12px, 3vw, 24px);
+}
+
+.nav-right a {
+  font-size: clamp(9px, 2.5vw, 13px);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-right a:hover {
+  color: #40E0D0;
+}
+
+/* ========================= MAIN CONTENT ========================= */
+.conservation {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: clamp(20px, 4vw, 34px);
+}
+
+/* TITLE */
+.con-title {
+  font-size: clamp(1.5rem, 6vw, 2.8rem);
+  text-align: center;
+  margin: 0;
+}
+
+/* SECTIONS */
+section {
+  width: 100%;
+}
+
+section h2 {
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  margin-bottom: 14px;
+
+  border-bottom: 2px solid #1e4b63;
+  padding-bottom: 8px;
+}
+
+/* ========================= THREAT CARDS ======================== */
+.threats {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, 260px); 
+  justify-content: center;
+
+  gap: 30px;
+}
+
+/* CARDS */
+.card {
+  width: 260px;
+
+  background-color: #10222d;
+  border: 2px solid #1e4b63;
+  border-radius: 6px;
+
+  padding: clamp(10px, 3vw, 16px);
+
+  text-align: center;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* HOVER */
+.card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* CARD TITLE */
+.card h3 {
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  margin-bottom: 8px;
+
+  color: #ff5b1f;
+
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* CARD TEXT */
+.card p {
+  font-size: clamp(0.6rem, 2vw, 0.8rem);
+  line-height: 1.5;
+}
+
+/* ======================== HOW TO HELP ======================== */
+.help-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.help-list div {
+  border: 1px dashed #1e4b63;
+
+  padding: clamp(10px, 3vw, 12px);
+
+  font-size: clamp(0.6rem, 2vw, 0.8rem);
+}
+
+.help-list span {
+  color: #00c2ff;
+  margin-right: 8px;
+}
+
+/* ========================= SCROLL REVEAL ========================= */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card.reveal-on-scroll {
+  transition-delay: var(--delay, 0s);
+}
+
+/* ========================= FOOTER ======================== */
+footer {
+  background-color: #1b263b;
+
+  padding: clamp(10px, 3vw, 18px) clamp(16px, 4vw, 32px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-top: 4px solid #39545c;
+
+  font-size: clamp(8px, 2vw, 12px);
+}
+
+.foot-right {
+  display: flex;
+  gap: clamp(10px, 2vw, 22px);
+}
+
+.foot-right a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.foot-right a:hover {
+  color: #40E0D0;
+}
+
+/* ========================= MOBILE ======================== */
+@media (max-width: 600px) {
+
+  .nav-right {
+    display: none; /* optional for hamburger later */
+  }
+
+  .threats {
+    grid-template-columns: repeat(auto-fit, 220px);
+  }
+
+}
+
+@media (max-width: 600px) {
+  .threats {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, 220px);
+
+    justify-content: center;   /* center horizontally */
+    align-items: center;       /* center vertically  */
+
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 220px;   /* ✅ same as grid column */
+  }
+}
+/* ========================= CONSERVATION DIVIDER ONL ========================= */
+
+.conservation-page-main + .section-divider {
+  position: relative;
+
+  top: -8vh;   /* ✅ move DOWN */
+}
+

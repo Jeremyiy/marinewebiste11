@@ -1,0 +1,390 @@
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  position: relative;
+
+  min-height: calc(100vh - 80px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 0 60px;
+
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BACKGROUND VIDEO
+========================= */
+.bg-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scaleX(-1);
+
+  z-index: -2;
+}
+
+/* =========================
+   HERO OVERLAY
+========================= */
+.hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(5, 15, 25, 0.55);
+
+  z-index: -1;
+}
+
+/* =========================
+   HERO TITLE
+========================= */
+.hero h1 {
+  max-width: 700px;
+
+  margin-bottom: 20px;
+
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+}
+
+/* =========================
+   HERO TEXT
+========================= */
+.hero p {
+  max-width: 680px;
+
+  margin-bottom: 28px;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   HIGHLIGHT TEXT
+========================= */
+.hero .highlight {
+  display: inline-block;
+
+  color: #40E0D0;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 6px rgba(64, 224, 208, 0.7),
+    0 0 14px rgba(64, 224, 208, 0.4);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 20px;
+}
+
+.buttons a {
+  padding: 14px 28px;
+
+  background-color: #15bff3;
+
+  border: 3px solid #ffffff;
+
+  color: #0d1b2a;
+  text-decoration: none;
+
+  font-size: 13px;
+
+  transition: 0.25s ease;
+}
+
+.buttons a:hover {
+  background-color: #0099cc;
+
+  transform: translateY(-2px);
+}
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+.reveal-on-scroll {
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  transition: 0.9s ease;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =========================
+   HOME SECTION
+========================= */
+#home,
+.home-section {
+  position: relative;
+}
+
+/* =========================
+   HOME DIVIDER
+========================= */
+.home-divider {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/* =========================
+   HOME DIVIDER LINES
+========================= */
+.home-divider::before,
+.home-divider::after {
+  content: "";
+
+  flex: 1;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #40E0D0,
+    transparent
+  );
+
+  background-size: 200px 100%;
+
+  animation: waveFlow 3s linear infinite;
+}
+
+/* =========================
+   HOME DIVIDER DOT
+========================= */
+.home-divider span {
+  width: 12px;
+  height: 12px;
+
+  margin: 0 12px;
+
+  background: #40E0D0;
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px #40E0D0,
+    0 0 25px rgba(64,224,208,0.8);
+
+  animation: pulse 1.5s infinite alternate;
+}
+
+/* =========================
+   GLOBAL SECTION DIVIDER
+========================= */
+.section-divider {
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+
+  pointer-events: none;
+}
+
+/* =========================
+   SECTION DIVIDER LINES
+========================= */
+.section-divider::before,
+.section-divider::after {
+  content: "";
+
+  flex: 1;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #40E0D0,
+    transparent
+  );
+
+  background-size: 200px 100%;
+
+  animation: waveFlow 3s linear infinite;
+}
+
+/* =========================
+   SECTION DIVIDER DOT
+========================= */
+.section-divider span {
+  width: 12px;
+  height: 12px;
+
+  margin: 0 12px;
+
+  background: #40E0D0;
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px #40E0D0,
+    0 0 25px rgba(64,224,208,0.8);
+
+  animation: pulse 1.5s infinite alternate;
+}
+
+/* =========================
+   DIVIDER ANIMATIONS
+========================= */
+
+/* 🌊 moving ocean wave */
+@keyframes waveFlow {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* ✨ glowing pulse */
+@keyframes pulse {
+  from {
+    transform: scale(0.8);
+
+    box-shadow:
+      0 0 5px #40E0D0;
+  }
+
+  to {
+    transform: scale(1.2);
+
+    box-shadow:
+      0 0 20px #40E0D0;
+  }
+}
+
+/* =========================
+   MARINE SPECIES SECTION
+========================= */
+.marine-species {
+  overflow: hidden;
+
+  margin-top: 0;
+
+  padding-top: 30px;
+}
+
+/* REMOVE EXTRA GAP */
+.marine-species h2 {
+  margin-top: 0;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+
+  /* HERO */
+  .hero {
+    padding: 0 24px;
+
+    align-items: center;
+    text-align: center;
+  }
+
+  /* BUTTONS */
+  .buttons {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .buttons a {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  /* HOME DIVIDER */
+  .home-divider {
+    bottom: -12px;
+
+    height: 40px;
+
+    padding: 0 20px; /* ✅ aligns with marine section */
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    height: 40px;
+
+    padding: 0 20px; /* ✅ responsive alignment */
+  }
+
+  /* SMALLER DIVIDER DOT */
+  .home-divider span,
+  .section-divider span {
+    width: 8px;
+    height: 8px;
+
+    margin: 0 8px;
+  }
+
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+  .hero {
+    padding: 0 40px;
+  }
+
+  .home-divider {
+    bottom: -18px;
+  }
+
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width: 901px) {
+
+  .home-divider {
+    bottom: -25px;
+  }
+
+}

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marine Quiz – Easy</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/quiz-play.css">
+</head>
+
+<body class="quiz-page" data-difficulty="easy">
+
+  <!-- NAV -->
+<nav>
+
+  <div class="nav-left">
+    <img src="images,vids/logs.png" class="logo" alt="logo">
+    <span class="site-name">
+      <span class="accent">Blue </span>Depths</span>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <!-- NAV LINKS -->
+  <div class="nav-right" id="navMenu">
+      <a href="index.html#home">HOME</a>
+      <a href="index.html#species">MARINE LIFE</a>
+      <a href="index.html#ecosystems">ECOSYSTEMS</a>
+      <a href="index.html#conservation">CONSERVATION</a>
+      <a href="index.html#quiz">QUIZ</a>
+  </div>
+
+</nav>
+  <!-- QUIZ -->
+  <main class="quiz-container">
+
+    <h1 class="quiz-title">
+      EASY <span class="accent">QUIZ</span>
+    </h1>
+
+    <!-- STATUS -->
+    <div class="score-box">
+      <span>Question <span id="qNumber">1</span> of 5</span>
+      <span>Score: <span id="score">0</span></span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+
+    <!-- QUESTION -->
+    <div class="question-card">
+      <div class="question" id="questionText"></div>
+      <div class="choices" id="choices">
+        <button class="choice" data-index="0"></button>
+        <button class="choice" data-index="1"></button>
+        <button class="choice" data-index="2"></button>
+        <button class="choice" data-index="3"></button>
+      </div>
+    </div>
+
+    <!-- END -->
+    <div class="end-screen" id="endScreen">
+      <h2>QUIZ COMPLETE!</h2>
+      <p>Your Score: <span id="finalScore"></span></p>
+      <p id="performanceText"></p>
+      <a href="index.html#quiz" onclick="goBackMenu()" class="back-btn">
+        BACK TO QUIZ MENU
+      </a>
+
+      
+    </div>
+
+  </main>
+
+
+
+  <!-- SOUNDS -->
+  <audio id="sound-correct" src="sounds/correct.wav" preload="auto"></audio>
+  <audio id="sound-wrong" src="sounds/wrong.wav" preload="auto"></audio>
+
+  <!-- JS -->
+  <script src="js/easy.js"></script>
+  <script src="js/scroll-species.js"></script>
+</body>
+</html>
