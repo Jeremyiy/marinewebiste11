@@ -10,6 +10,31 @@ const easyQuestions = [
     answer: 0
   },
   {
+    question: "What is the main source of energy for the vast majority of marine life?",
+    choices: ["Hydrothermal vents", "Volcanic activity", "Underwater currents", "Sunlight"],
+    answer: 3
+  },  
+  {
+    question: "What type of water is found in marine ecosystems?",
+    choices: ["Freshwater", "Brackish water", "Saltwater", "Distilled water"],
+    answer: 2
+  },
+  {
+    question: "Which of these is a marine reptile that must come to shore to lay eggs?",
+    choices: ["Dolphin", "Sea Turtle", "Manatee", "Sea Lion"],
+    answer: 1
+  },
+  {
+    question: "What do fish use to breathe oxygen underwater?",
+    choices: ["Lungs", "Skin", "Gills", "Fins"],
+    answer: 2
+  },
+  {
+    question: "What are the tiny, drifting organisms that form the base of the marine food web?",
+    choices: ["Plankton", "Shrimp", "Minnows", "Algae"],
+    answer: 0
+  },
+  {
     question: "Which animal is known as the largest fish in the world?",
     choices: ["Great White Shark", "Whale Shark", "Manta Ray", "Blue Marlin"],
     answer: 1
@@ -33,6 +58,31 @@ const easyQuestions = [
 
 /* MEDIUM QUESTIONS */
 const mediumQuestions = [
+  {
+    question: "Which group of marine animals do Krill belong to?",
+    choices: ["Molluscs", "Crustacea", "Cnidarians", "Chordates"],
+    answer: 1
+  },
+  {
+    question: "What causes the phenomenon known as 'Ocean Tides'?",
+    choices: ["Underwater earthquakes", "The gravitational pull of the Sun and Moon", "Global wind patterns", "The rotation of the Earth's core"],
+    answer: 1
+  },
+  {
+    question: "Which ecosystem acts as a nursery for fish and protects coastlines from erosion?",
+    choices: ["Sandy Beaches", "Mangrove Forests", "Deep Sea Trenches", "Open Ocean"],
+    answer: 1
+  },
+  {
+    question: "Which sense is most highly developed in sharks for detecting prey from long distances?",
+    choices: ["Eyesight", "Electroreception", "Taste", "Electro-magnetic navigation"],
+    answer: 1
+  },
+  {
+    question: "Which marine mammal relies on dense fur instead of blubber for warmth?",
+    choices: ["Walrus", "Polar Bear", "Sea Otter", "Elephant Seal"],
+    answer: 2
+  },
   {
     question: "Which ecosystem serves as a nursery for many marine species?",
     choices: ["Mangroves", "Open Ocean", "Deep Sea", "Ice Caps"],
@@ -77,6 +127,31 @@ const mediumQuestions = [
 
 /* HARD QUESTIONS */
 const hardQuestions = [
+  {
+    question: "Why are deep-sea fish stocks more vulnerable to overfishing?",
+    choices: ["They are small", "Slow growth and late maturity", "They have no scales", "Warmer water habitat"],
+    answer: 1
+  },
+  {
+    question: "What is the 'Carrying Capacity' of a marine ecosystem?",
+    choices: ["The total volume of water in the basin", "The maximum population an environment can sustain with available resources", "The amount of carbon fixed by phytoplankton", "The total biomass of all apex predators"],
+    answer: 1
+  },
+  {
+    question: "Which specific zone refers to the deepest ocean trenches (6,000m+)?",
+    choices: ["Abyssal Zone", "Bathyl Zone", "Hadal Zone", "Midnight Zone"],
+    answer: 2
+  },
+  {
+    question: "What process allows life to thrive near hydrothermal vents without sunlight?",
+    choices: ["Photosynthesis", "Chemosynthesis", "Thermosynthesis", "Radiosynthesis"],
+    answer: 1
+  },
+  {
+    question: "Which ocean is generally regarded as the 'windiest' on Earth?",
+    choices: ["The Arctic Ocean", "The Atlantic Ocean", "The Southern Ocean", "The Indian Ocean"],
+    answer: 2
+  },
   {
     question: "What is the scientific name of the green sea turtle?",
     choices: [
