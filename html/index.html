@@ -690,6 +690,33 @@
   <source src="images,vids/tunetank.com_interface-cursor-click.wav" type="audio/wav">
 </audio>
 
+<!-- SIMPLE LARGE IMAGE MODAL -->
+<div id="detailModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    
+<div class="modal-image">
+  <img id="modalImage" src="" alt="">
+  <span id="modalStatus" class="modal-status"></span>   <!-- ← Add this -->
+</div>
+    
+    <div class="modal-info">
+      <h2 id="modalTitle"></h2>
+      <p id="modalLatin" class="latin-name"></p>
+      <div id="modalStatus" class="modal-status"></div>
+      
+      <div class="modal-description">
+        <h3>Description</h3>
+        <p id="modalDesc"></p>
+      </div>
+      
+      <div class="modal-habitat">
+        <h3>Habitat</h3>
+        <p id="modalHabitat"></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

@@ -1,15 +1,90 @@
 // Wait until the HTML is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= NAV TOGGLE ================= */
+/* ================= NAV TOGGLE ================= */
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("navMenu");
 
   if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-    });
+    hamburger.addEventListener("click", () => navMenu.classList.toggle("show"));
   }
+
+  const closeBtn = document.getElementById("closeMenu");
+  if (closeBtn && navMenu) {
+    closeBtn.addEventListener("click", () => navMenu.classList.remove("show"));
+  }
+
+  /* ================= MODAL ================= */
+  const modal = document.getElementById("detailModal");
+  const modalClose = document.querySelector(".modal-close");
+  const modalImage = document.getElementById("modalImage");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalLatin = document.getElementById("modalLatin");
+  const modalStatus = document.getElementById("modalStatus");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalHabitat = document.getElementById("modalHabitat");
+  const modalFacts = document.getElementById("modalFacts");
+
+  function openModal(card) {
+  const img = card.querySelector("img");
+  const title = card.querySelector("h3").textContent;
+  const latin = card.querySelector(".latin")?.textContent || "";
+  const statusEl = card.querySelector(".status");
+  const desc = card.querySelector(".desc")?.textContent.trim() || "";
+  
+  // Check if it's an ecosystem or species
+  const isEcosystem = card.closest("#ecosystems") !== null;
+
+  document.getElementById("modalImage").src = img.src;
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalLatin").textContent = latin;
+  document.getElementById("modalDesc").textContent = desc;
+
+  // Status Badge
+  const modalStatus = document.getElementById("modalStatus");
+  if (statusEl) {
+    modalStatus.textContent = statusEl.textContent;
+    modalStatus.className = `modal-status ${statusEl.classList[1] || 'common'}`;
+    modalStatus.style.display = "block";
+  }
+
+  // Habitat section - Hide for Ecosystems
+  const habitatSection = document.querySelector(".modal-habitat");
+  if (habitatSection) {
+    if (isEcosystem) {
+      habitatSection.style.display = "none";
+    } else {
+      const habitatText = card.querySelector(".habitat p")?.textContent.trim() || "Philippine marine waters";
+      document.getElementById("modalHabitat").textContent = habitatText;
+      habitatSection.style.display = "block";
+    }
+  }
+
+  document.getElementById("detailModal").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+  // Make all cards clickable
+  document.querySelectorAll(".species-card").forEach(card => {
+    card.style.cursor = "pointer";
+    card.addEventListener("click", () => openModal(card));
+  });
+
+  // Close modal
+modalClose.addEventListener("click", closeModal);
+window.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
+
+function closeModal() {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
 
   /* ================= SCROLL ANIMATION ================= */
   const elements = document.querySelectorAll(
