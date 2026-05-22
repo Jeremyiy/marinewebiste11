@@ -35,6 +35,8 @@ nav {
   align-items: center;
 
   border-bottom: 4px solid #39545c;
+  position: fixed;
+  z-index: 1000;
 }
 
 .nav-left {
