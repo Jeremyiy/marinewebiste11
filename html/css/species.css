@@ -15,10 +15,7 @@ body {
   padding: clamp(20px, 5vw, 40px);
 }
 
-.marine-species {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
 
 .section-title {
   text-align: center;
@@ -131,13 +128,18 @@ body {
 
 .species-scroll {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: center;  /*bruh*/
+  gap: 59px;
   width: 100%;
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 20px 0;
   scrollbar-width: none;
+}
+
+.marine-species {
+  max-width: 1650px;
+  margin: 0 auto;
 }
 
 .species-scroll::-webkit-scrollbar {
@@ -184,8 +186,8 @@ body {
   border-radius: 50%;
 }
 
-.arrow.left  { left: 15px; }
-.arrow.right { right: 15px; }
+.arrow.left  { left: -15px; }
+.arrow.right { right: 115px; }
 /* ========================= SLIDER CENTERING FIX ========================= */
 
 

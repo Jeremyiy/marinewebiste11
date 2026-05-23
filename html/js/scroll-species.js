@@ -189,6 +189,8 @@ window.addEventListener("click", (e) => {
     let isDragging = false;
     let startX = 0;
     let scrollLeft = 0;
+    
+    
 
     const getCards = () =>
       [...scroll.querySelectorAll(".species-card")]
@@ -211,6 +213,7 @@ window.addEventListener("click", (e) => {
 
       cards.forEach(c => c.classList.remove("active"));
       card.classList.add("active");
+      
     }
 
     // Infinite loop setup
@@ -260,6 +263,7 @@ window.addEventListener("click", (e) => {
   }
 
 });
+
 const feedbackForm = document.querySelector(".feedback-form");
 const popup = document.getElementById("thankPopup");
 
