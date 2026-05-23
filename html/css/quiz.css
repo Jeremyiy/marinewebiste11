@@ -212,7 +212,7 @@ body {
 
   transition:
     opacity 1.6s ease,
-    transform 9.6s ease;
+    transform 1.6s ease;
 
   transition-delay: var(--delay, 0s);
 }

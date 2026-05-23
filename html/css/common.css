@@ -17,7 +17,6 @@ body {
 /* ========================= GLOBAL ========================= */
 body {
   font-family: "Press Start 2P", system-ui;
-
   background-color: #0d1b2a;
   color: #ffffff;
 }
@@ -720,6 +719,44 @@ footer {
 
 }
 
+
+body {
+  position: relative;
+}
+
+/* Extra safety for mobile */
+@media (max-width: 768px) {
+  .species-scroll,
+  .slider-container,
+  .marine-species,
+  .quiz-container {
+    overflow-x: hidden !important;
+  }
+}
+#quiz section,
+#quiz main,
+#quiz .quiz-container, .species-page-main,
+.conservation-page-main,
+.quiz-container,
+.marine-species,
+.species-scroll,
+.slider-container {
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  max-height: none !important;
+}
+
+/* Force main body scroll only */
 html, body {
-  overflow-x: hidden!important;   /* LOCK SIDE SCROLL */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+}
+
+/* Extra safety for mobile */
+@media (max-width: 768px) {
+  .species-page-main,
+  .conservation-page-main {
+    overflow-y: visible !important;
+  }
 }
