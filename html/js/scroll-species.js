@@ -178,36 +178,32 @@ function closeModal() {
   }
 
   /* ================= SLIDER ================= */
+  /* ================= SWIPE + INFINITE SLIDER ================= */
   document.querySelectorAll(".slider-container").forEach(initSlider);
 
   function initSlider(container) {
-
     const scroll = container.querySelector(".species-scroll");
     const leftBtn = container.querySelector(".arrow.left");
     const rightBtn = container.querySelector(".arrow.right");
 
     let index = 0;
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
 
     const getCards = () =>
       [...scroll.querySelectorAll(".species-card")]
         .filter(c => getComputedStyle(c).display !== "none");
 
     function updateSlider() {
-
       const cards = getCards();
       if (!cards.length) return;
 
-      const maxIndex = cards.length - 1;
-
-      if (index > maxIndex) index = 0;
-      if (index < 0) index = maxIndex;
+      if (index >= cards.length) index = 0;
+      if (index < 0) index = cards.length - 1;
 
       const card = cards[index];
-
-      const scrollPosition =
-        card.offsetLeft +
-        (card.offsetWidth / 2) -
-        (scroll.clientWidth / 2);
+      const scrollPosition = card.offsetLeft + (card.offsetWidth / 2) - (scroll.clientWidth / 2);
 
       scroll.scrollTo({
         left: scrollPosition,
@@ -217,19 +213,51 @@ function closeModal() {
       cards.forEach(c => c.classList.remove("active"));
       card.classList.add("active");
     }
-    
-    
 
+    // Infinite loop setup
+    function setupInfinite() {
+      const originalCards = getCards();
+      if (originalCards.length < 3) return;
+      originalCards.forEach(card => scroll.appendChild(card.cloneNode(true)));
+    }
+
+    setTimeout(() => {
+      setupInfinite();
+      updateSlider();
+    }, 200);
+
+    // Swipe functionality
+    scroll.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX - scroll.offsetLeft;
+      scrollLeft = scroll.scrollLeft;
+    });
+
+    scroll.addEventListener("touchend", () => {
+      isDragging = false;
+      const cards = getCards();
+      const cardWidth = cards[0] ? cards[0].offsetWidth + 30 : 400;
+      index = Math.round(scroll.scrollLeft / cardWidth);
+      updateSlider();
+    });
+
+    scroll.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.touches[0].pageX - scroll.offsetLeft;
+      const walk = (x - startX) * 2;
+      scroll.scrollLeft = scrollLeft - walk;
+    });
+
+    // Arrow buttons (Desktop only)
     function move(dir) {
       index += dir;
       updateSlider();
-      playSound(); // ✅ ONLY HERE (buttons)
+      playSound();
     }
 
     if (rightBtn) rightBtn.addEventListener("click", () => move(1));
     if (leftBtn) leftBtn.addEventListener("click", () => move(-1));
-
-    setTimeout(updateSlider, 150);
   }
 
 });

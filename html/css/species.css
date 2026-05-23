@@ -159,6 +159,12 @@ body {
 }
 
 /* ======================== ARROWS ========================= */
+@media (max-width: 768px) { /*remove arrow when in mobile*/
+  .arrow {
+    display: none !important;
+  }
+}
+
 .arrow {
   position: absolute;
   top: 50%;
@@ -529,4 +535,10 @@ body {
 
 .species-card.active {
   transform: scale(1.08) translateY(-10px);
+}
+
+@media (max-width: 768px) {
+  .arrow {
+    display: none !important;
+  }
 }
