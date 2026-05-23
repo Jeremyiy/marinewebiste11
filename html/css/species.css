@@ -275,7 +275,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 1px;
+  overflow:hidden;
 }
 
 /* STATUS BADGE */
