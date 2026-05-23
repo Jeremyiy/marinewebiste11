@@ -793,3 +793,9 @@ html, body {
 #quiz .mode-grid.revealed {
   overflow: hidden;
 }
+
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+}

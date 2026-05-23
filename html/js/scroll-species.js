@@ -14,25 +14,27 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtn.addEventListener("click", () => navMenu.classList.remove("show"));
   }
 
-  /* ================= MODAL ================= */
-  const modal = document.getElementById("detailModal");
-  const modalClose = document.querySelector(".modal-close");
-  const modalImage = document.getElementById("modalImage");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalLatin = document.getElementById("modalLatin");
-  const modalStatus = document.getElementById("modalStatus");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalHabitat = document.getElementById("modalHabitat");
-  const modalFacts = document.getElementById("modalFacts");
+/* ================= MODAL ================= */
+const modal = document.getElementById("detailModal");
+const modalClose = document.querySelector(".modal-close");
 
-  function openModal(card) {
+let scrollPosition = 0;
+
+function openModal(card) {
+  scrollPosition = window.scrollY;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollPosition}px`;
+  document.body.style.width = "100%";
+  document.body.classList.add("modal-open");
+  
+  modal.style.display = "block";
+  
   const img = card.querySelector("img");
   const title = card.querySelector("h3").textContent;
   const latin = card.querySelector(".latin")?.textContent || "";
   const statusEl = card.querySelector(".status");
   const desc = card.querySelector(".desc")?.textContent.trim() || "";
   
-  // Check if it's an ecosystem or species
   const isEcosystem = card.closest("#ecosystems") !== null;
 
   document.getElementById("modalImage").src = img.src;
@@ -40,15 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("modalLatin").textContent = latin;
   document.getElementById("modalDesc").textContent = desc;
 
-  // Status Badge
-  const modalStatus = document.getElementById("modalStatus");
+  const modalStatusEl = document.getElementById("modalStatus");
   if (statusEl) {
-    modalStatus.textContent = statusEl.textContent;
-    modalStatus.className = `modal-status ${statusEl.classList[1] || 'common'}`;
-    modalStatus.style.display = "block";
+    modalStatusEl.textContent = statusEl.textContent;
+    modalStatusEl.className = `modal-status ${statusEl.classList[1] || 'common'}`;
+    modalStatusEl.style.display = "block";
   }
 
-  // Habitat section - Hide for Ecosystems
   const habitatSection = document.querySelector(".modal-habitat");
   if (habitatSection) {
     if (isEcosystem) {
@@ -59,33 +59,32 @@ document.addEventListener("DOMContentLoaded", () => {
       habitatSection.style.display = "block";
     }
   }
-
-  document.getElementById("detailModal").style.display = "block";
-  document.body.style.overflow = "hidden";
 }
-  // Make all cards clickable
-  document.querySelectorAll(".species-card").forEach(card => {
-    card.style.cursor = "pointer";
-    card.addEventListener("click", () => openModal(card));
-  });
-
-  // Close modal
-modalClose.addEventListener("click", closeModal);
-window.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
 
 function closeModal() {
   modal.style.display = "none";
-  document.body.style.overflow = "auto";
+  document.body.classList.remove("modal-open");
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+  window.scrollTo(0, scrollPosition);
 }
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-  });
 
+// Make cards clickable
+document.querySelectorAll(".species-card").forEach(card => {
+  card.style.cursor = "pointer";
+  card.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openModal(card);
+  });
+});
+
+if (modalClose) modalClose.addEventListener("click", closeModal);
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
   /* ================= SCROLL ANIMATION ================= */
   const elements = document.querySelectorAll(
     "#species .species-card, #ecosystems .species-card, .reveal-on-scroll"
