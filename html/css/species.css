@@ -12,9 +12,7 @@ body {
 
   overflow-y: visible;
 
-  padding: clamp(20px, 5vw, 40px);
 }
-
 
 
 .section-title {
@@ -166,7 +164,7 @@ body {
 @media (max-width: 768px) {
   .species-card {
     flex: 0 0 260px;
-    min-width: 260px;
+    min-width: 240px;
     height: 220px;
   }
 }
@@ -239,7 +237,7 @@ body {
 .species-card {
   flex: 0 0 460px;
   min-width: 460px;
-  height: 265px;
+  height: 250px;
   background-color: #0f2633;
   border: 2px solid #1e4b63;
   border-radius: 10px;
@@ -325,17 +323,32 @@ body {
   .species-card {
     flex-direction: column;
     height: auto;
-    min-width: 280px;
+    min-width: 30vh;
     flex: 0 0 280px;
   }
   
   .species-image {
     height: 220px;
   }
+    .marine-species{
+    max-width:2000px;
+  }
+}
+
+@media (max-width: 350px) {
+  .species-card {
+    flex-direction: column;
+    height: auto;
+    min-width: 24vh;
+    flex: 0 0 280px;
+    
+  }
+  
+
 }
 /* NON ACTIVE CARDS STILL VISIBLE */
 .species-card:not(.active) {
-  opacity: 0.35;
+  opacity: 0.25;
 
   transform: scale(0.92);
 
@@ -458,7 +471,7 @@ body {
 @media (max-width: 600px) {
 
   .species-scroll {
-    gap: 10px;
+    gap: 20px;
 
     padding: 30px 0;
   }
@@ -472,15 +485,16 @@ body {
   .species-scroll::after {
     flex: 0 0 calc(50% - 30%);
   }
-
-  .arrow.left {
+    .arrow.left {
     left: 8px;
   }
 
   .arrow.right {
     right: 8px;
   }
+
 } 
+
 
 /* ========================= DESKTOP ========================= */
     @media (min-width: 601px) {
@@ -496,6 +510,7 @@ body {
   .arrow.left { left: 10px; }
   .arrow.right { right: 10px; }
 }
+
 /* ======================== SECTION DIVIDER (PREMIUM) ========================= */
 /* ======================== SECTION DIVIDER ========================= */
 .section-divider {
@@ -564,7 +579,7 @@ body {
 
 .slider-container {
   overflow-x: hidden;   /* only hide left/right */
-  overflow-y: visible;  /* allow full card height */
+  overflow-y: hidden;  /* allow full card height */
 }
 @media (max-width: 600px) {
 
