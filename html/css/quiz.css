@@ -28,9 +28,10 @@ body {
 }
 /* ================= QUIZ SECTION ================= */
 #quiz {
-  padding: 80px 20px 100px;
+  padding: 40px 20px 60px;
   background-color: #0d1b2a;
 }
+
 
 .quiz-container {
   max-width: 1100px;
@@ -210,8 +211,8 @@ body {
   transform: translateY(40px);
 
   transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+    opacity 1.6s ease,
+    transform 9.6s ease;
 
   transition-delay: var(--delay, 0s);
 }

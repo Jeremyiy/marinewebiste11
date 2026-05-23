@@ -196,7 +196,7 @@ nav {
   z-index: 1000;
 
   width: 100%;
-  height: 60px;
+  height: 69px;
 
   padding: 14px 10px;
 
@@ -683,15 +683,12 @@ footer {
 
  
   
-  #quiz + .section-divider {
-    margin-top: -150px !important;
-  }
-  
-  #feedback .section-divider {
-    margin-top: 80px!important;   /* move it UP */
-  }
+#quiz + .section-divider {
+  margin-top: -60px !important;
+}
 
-
+#feedback .section-divider {
+  margin-top: 40px!important;
 }
 
 /* =========================           DESKTOP             ========================= */

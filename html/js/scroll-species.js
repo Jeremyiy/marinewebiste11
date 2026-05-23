@@ -217,6 +217,8 @@ function closeModal() {
       cards.forEach(c => c.classList.remove("active"));
       card.classList.add("active");
     }
+    
+    
 
     function move(dir) {
       index += dir;
