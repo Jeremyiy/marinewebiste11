@@ -388,3 +388,22 @@
   }
 
 }
+
+/* FIX WEIRD SPACING BETWEEN SPECIES AND ECOSYSTEMS */
+#species {
+  padding-bottom: 20px !important;
+  margin-bottom: 0 !important;
+}
+
+.section-divider {
+  margin: 30px 0 !important;   /* Reduced spacing */
+}
+
+#ecosystems {
+  margin-top: -20px;           /* Pull it up a bit */
+  padding-top: 10px;
+}
+
+#ecosystems .marine-species {
+  padding-top: 0;
+}

@@ -26,201 +26,117 @@ body {
   /* SPACING */
   --quiz-gap: 30px;
 }
-
-/* ================================= QUIZ SECTION ========================================================= */
+/* ================= QUIZ SECTION ================= */
 #quiz {
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding:
-    var(--quiz-top-space-desktop)
-    20px
-    80px;
-
-  overflow: hidden;
+  padding: 80px 20px 100px;
+  background-color: #0d1b2a;
 }
 
-/* ================================ MAIN QUIZ CONTAINER ========================================================= */
 .quiz-container {
-
-  width: 100%;
-  max-width: var(--quiz-max-width);
-
+  max-width: 1100px;
   margin: 0 auto;
-
   text-align: center;
 }
 
-/* ============================== MAIN TITLE ========================================================= */
 .quiz-main-title {
-
-  margin:
-    0
-    0
-    15px;
-
-  font-size: clamp(32px, 5vw, 52px);
-
-  letter-spacing: 3px;
-  line-height: 1.3;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  margin-bottom: 12px;
 }
 
-/* ACCENT */
-.quiz-main-title .accent {
-
-  color: #40E0D0;
-
-  text-shadow:
-    0 0 6px rgba(64, 224, 208, 0.7),
-    0 0 12px rgba(64, 224, 208, 0.3);
-}
-
-/* ===================================  SUBTITLE ========================================================= */
 .quiz-subtitle {
-
-  margin:
-    10px
-    0
-    40px;
-
-  font-family: "Press Start 2P", system-ui;
-
-  font-size: clamp(10px, 2vw, 14px);
-
-  letter-spacing: 2px;
-  line-height: 1.7;
-
-  text-transform: uppercase;
-
-  color: #cfe8f3;
-
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: #7fb3c9;
+  margin-bottom: 50px;
   opacity: 0.9;
 }
 
-/* =============================================== QUIZ GRID ========================================================= */
 .mode-grid {
-
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(240px, 1fr));
-
-  gap: var(--quiz-gap);
-
-  justify-items: center;
-  align-items: stretch;
-
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* ================================== QUIZ CARD ========================================================= */
 .mode-card {
-
-  width: 100%;
-  max-width: var(--quiz-card-max-width);
-
-  background-color: #10222d;
-
+  background-color: #0f2633;
   border: 2px solid #1e4b63;
-
-  padding: 30px 20px;
-
-  text-align: center;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  border-radius: 10px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;           /* Same height for all cards */
+  transition: all 0.3s ease;
 }
 
-/* CARD HOVER */
 .mode-card:hover {
-
-  transform:
-    translateY(-8px)
-    scale(1.03);
-
-  box-shadow:
-    0 18px 35px rgba(0, 0, 0, 0.5);
+  transform: translateY(-10px);
+  border-color: #40E0D0;
+  box-shadow: 0 0 25px rgba(64, 224, 208, 0.4);
 }
 
-/* ================== CARD TITLE =========================== */
 .mode-card h3 {
-
-  margin:
-    0
-    0
-    15px;
-
-  font-size: 18px;
-
-  transition: color 0.3s ease;
-}
-
-/* TITLE HOVER */
-.mode-card:hover h3 {
+  font-size: 1.45rem;
   color: #40E0D0;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
-/* ==================================== CARD DESCRIPTION ========================================================= */
 .mode-card p {
-
-  margin:
-    0
-    0
-    25px;
-
-  font-size: 13px;
-
-  line-height: 1.7;
-
-  color: #ccc;
+  color: #d0dce3;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: auto;         /* This pushes button to bottom */
+  flex-grow: 1;
 }
 
-/* =================================  START BUTTON ======================================================== */
+/* START QUIZ BUTTON - FIXED AT BOTTOM */
 .start-btn {
-
-  display: inline-block;
-
-  padding:
-    12px
-    28px;
-
-  border: 3px solid #ffffff;
-
-  color: white;
-
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  margin: 24px auto 0 auto;     /* Centered + space from text */
+  padding: 14px 28px;
+  text-align: center;
   text-decoration: none;
-
-  font-size: 14px;
-  font-weight: bold;
-
-  image-rendering: pixelated;
-
-  box-shadow:
-    4px 4px 0 #000000;
-
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
-/* BUTTON HOVER */
+/* Difficulty Colors */
+.start-btn.easy {
+  background-color: #2ecc71;
+  color: #ffffff;
+  border: 2px solid #2ecc71;
+}
+
+.start-btn.medium {
+  background-color: #f1c40f;
+  color: #0d1b2a;
+  border: 2px solid #f1c40f;
+}
+
+.start-btn.hard {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: 2px solid #e74c3c;
+}
+
 .start-btn:hover {
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    2px 2px 0 #000000;
+  transform: scale(1.05);
+  filter: brightness(1.08);
 }
 
-/* BUTTON CLICK */
-.start-btn:active {
-  transform: scale(0.95);
-}
+/* Difficulty Colors */
+.easy { border-color: #2ecc71; }
+.medium { border-color: #f1c40f; }
+.hard { border-color: #e74c3c; }
+
+.easy:hover { background: #2ecc71; }
+.medium:hover { background: #f1c40f; color: #0d1b2a; }
+.hard:hover { background: #e74c3c; }
 
 /* =============================== DIFFICULTY COLORS ==================================== */
 
@@ -239,7 +155,7 @@ body {
 .start-btn.medium {
 
   background-color: #f1c40f;
-  color: #0d1b2a;
+  color: #ffffff;
 }
 
 .start-btn.medium:hover {
@@ -251,6 +167,35 @@ body {
 
   background-color: #e74c3c;
   color: #ffffff;
+}
+/* ===============================end==================================== */
+
+
+/* ACCENT */
+.quiz-main-title .accent {
+
+  color: #40E0D0;
+
+  text-shadow:
+    0 0 6px rgba(64, 224, 208, 0.7),
+    0 0 12px rgba(64, 224, 208, 0.3);
+}
+
+
+/* CARD HOVER */
+.mode-card:hover {
+
+  transform:
+    translateY(-8px)
+    scale(1.03);
+
+  box-shadow:
+    0 18px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* BUTTON CLICK */
+.start-btn:active {
+  transform: scale(0.95);
 }
 
 .start-btn.hard:hover {
