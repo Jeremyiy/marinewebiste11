@@ -121,33 +121,71 @@ body {
 }
 
 /* ========================= SLIDER SYSTEM  ========================= */
+/* ========================= SLIDER SYSTEM - CENTERED CAROUSEL ========================= */
 .slider-container {
   position: relative;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   width: 100%;
-
   overflow: hidden;
+  padding: 20px 0;
 }
 
 .species-scroll {
   display: flex;
   align-items: center;
-
-  gap: 50px;
-
+  gap: 20px;
   width: 100%;
-
-  overflow: hidden;
-
+  overflow-x: auto;
   scroll-behavior: smooth;
-
-  padding: 35px 25px;
+  padding: 20px 0;
+  scrollbar-width: none;
 }
 
+.species-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Make cards smaller on sides for center focus */
+.species-card {
+  flex: 0 0 320px;
+  min-width: 320px;
+  height: 240px;
+  transition: all 0.4s ease;
+  opacity: 0.6;
+  transform: scale(0.85);
+}
+
+.species-card.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .species-card {
+    flex: 0 0 260px;
+    min-width: 260px;
+    height: 220px;
+  }
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 31, 38, 0.9);
+  border: 2px solid #40E0D0;
+  color: #40E0D0;
+  font-size: 18px;
+  padding: 12px 14px;
+  cursor: pointer;
+  z-index: 20;
+  border-radius: 50%;
+}
+
+.arrow.left  { left: 15px; }
+.arrow.right { right: 15px; }
 /* ========================= SLIDER CENTERING FIX ========================= */
 
 
@@ -449,7 +487,7 @@ body {
   
   .species-scroll::before,
   .species-scroll::after {
-    min-width: 180px;               /* Main fix for desktop */
+    min-width: 80px;               /* Main fix for desktop */
   }
   
   .arrow.left { left: 10px; }
@@ -542,4 +580,3 @@ body {
     display: none !important;
   }
 }
-
