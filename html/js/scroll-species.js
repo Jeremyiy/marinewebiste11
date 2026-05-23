@@ -122,29 +122,34 @@ window.addEventListener("click", (e) => {
     clickSound.play().catch(() => {});
   }
 
-  /* ================= FILTER: SPECIES ONLY ================= */
+/* ================= FILTER: SPECIES ONLY ================= */
   const speciesSection = document.querySelector("#species");
 
   if (speciesSection) {
     const speciesButtons = speciesSection.querySelectorAll(".filter-buttons button");
     const speciesCards = speciesSection.querySelectorAll(".species-card");
 
+    // Make ALL active by default
+    speciesButtons.forEach(btn => {
+      if (btn.dataset.filter === "all") btn.classList.add("active");
+    });
+
     speciesButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-
         speciesButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
         const filter = btn.dataset.filter;
 
         speciesCards.forEach(card => {
-          const status = card.dataset.status;
-
-          card.style.display =
-            (filter === "all" || filter === status) ? "flex" : "none";
+          const status = card.dataset.status || "common";
+          card.style.display = (filter === "all" || filter === status) ? "flex" : "none";
         });
 
-        speciesSection.querySelectorAll(".slider-container").forEach(initSlider);
+        // Reinitialize slider after filter
+        setTimeout(() => {
+          speciesSection.querySelectorAll(".slider-container").forEach(initSlider);
+        }, 50);
       });
     });
   }
@@ -156,113 +161,143 @@ window.addEventListener("click", (e) => {
     const ecoButtons = ecoSection.querySelectorAll(".ecosystem-filter-buttons button");
     const ecoCards = ecoSection.querySelectorAll(".species-card");
 
+    // Make ALL active by default
+    ecoButtons.forEach(btn => {
+      if (btn.dataset.filter === "all") btn.classList.add("active");
+    });
+
     ecoButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-
         ecoButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
         const filter = btn.dataset.filter;
 
         ecoCards.forEach(card => {
-          const status = card.dataset.status;
-
-          card.style.display =
-            (filter === "all" || filter === status) ? "flex" : "none";
+          const status = card.dataset.status || "common";
+          card.style.display = (filter === "all" || filter === status) ? "flex" : "none";
         });
 
-        ecoSection.querySelectorAll(".slider-container").forEach(initSlider);
+        // Reinitialize slider after filter
+        setTimeout(() => {
+          ecoSection.querySelectorAll(".slider-container").forEach(initSlider);
+        }, 50);
       });
     });
   }
+ /* ================= SLIDER - FIXED INFINITE CAROUSEL ================= */
+document.querySelectorAll(".slider-container").forEach(initSlider);
 
-  /* ================= SLIDER ================= */
-  /* ================= SWIPE + INFINITE SLIDER ================= */
-  document.querySelectorAll(".slider-container").forEach(initSlider);
+function initSlider(container) {
+  const scroll = container.querySelector(".species-scroll");
+  const leftBtn = container.querySelector(".arrow.left");
+  const rightBtn = container.querySelector(".arrow.right");
 
-  function initSlider(container) {
-    const scroll = container.querySelector(".species-scroll");
-    const leftBtn = container.querySelector(".arrow.left");
-    const rightBtn = container.querySelector(".arrow.right");
+  let index = 1;
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeftPos = 0;
 
-    let index = 0;
-    let isDragging = false;
-    let startX = 0;
-    let scrollLeft = 0;
-    
-    
-
-    const getCards = () =>
-      [...scroll.querySelectorAll(".species-card")]
-        .filter(c => getComputedStyle(c).display !== "none");
-
-    function updateSlider() {
-      const cards = getCards();
-      if (!cards.length) return;
-
-      if (index >= cards.length) index = 0;
-      if (index < 0) index = cards.length - 1;
-
-      const card = cards[index];
-      const scrollPosition = card.offsetLeft + (card.offsetWidth / 2) - (scroll.clientWidth / 2);
-
-      scroll.scrollTo({
-        left: scrollPosition,
-        behavior: "smooth"
-      });
-
-      cards.forEach(c => c.classList.remove("active"));
-      card.classList.add("active");
-      
-    }
-
-    // Infinite loop setup
-    function setupInfinite() {
-      const originalCards = getCards();
-      if (originalCards.length < 3) return;
-      originalCards.forEach(card => scroll.appendChild(card.cloneNode(true)));
-    }
-
-    setTimeout(() => {
-      setupInfinite();
-      updateSlider();
-    }, 200);
-
-    // Swipe functionality
-    scroll.addEventListener("touchstart", (e) => {
-      isDragging = true;
-      startX = e.touches[0].pageX - scroll.offsetLeft;
-      scrollLeft = scroll.scrollLeft;
-    });
-
-    scroll.addEventListener("touchend", () => {
-      isDragging = false;
-      const cards = getCards();
-      const cardWidth = cards[0] ? cards[0].offsetWidth + 30 : 400;
-      index = Math.round(scroll.scrollLeft / cardWidth);
-      updateSlider();
-    });
-
-    scroll.addEventListener("touchmove", (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = e.touches[0].pageX - scroll.offsetLeft;
-      const walk = (x - startX) * 2;
-      scroll.scrollLeft = scrollLeft - walk;
-    });
-
-    // Arrow buttons (Desktop only)
-    function move(dir) {
-      index += dir;
-      updateSlider();
-      playSound();
-    }
-
-    if (rightBtn) rightBtn.addEventListener("click", () => move(1));
-    if (leftBtn) leftBtn.addEventListener("click", () => move(-1));
+  function refreshCards() {
+    return [...scroll.querySelectorAll(".species-card")]
+      .filter(c => getComputedStyle(c).display !== "none");
   }
+
+  function clearPreviousClones() {
+    const allCards = scroll.querySelectorAll(".species-card");
+    allCards.forEach(card => {
+      if (card.classList.contains("clone")) {
+        card.remove();
+      }
+    });
+  }
+
+  function setupInfinite() {
+    clearPreviousClones(); // Important: remove old clones first
+    let cards = refreshCards();
+    if (cards.length < 2) return;
+
+    // Clone first and last cards
+    const firstClone = cards[0].cloneNode(true);
+    const lastClone = cards[cards.length - 1].cloneNode(true);
+
+    firstClone.classList.add("clone");
+    lastClone.classList.add("clone");
+
+    // Add clones
+    scroll.appendChild(firstClone);
+    scroll.insertBefore(lastClone, scroll.firstChild);
+
+    // Make clones clickable
+    [firstClone, lastClone].forEach(clone => {
+      clone.style.cursor = "pointer";
+      clone.addEventListener("click", () => openModal(clone));
+    });
+  }
+
+  function updateSlider(smooth = true) {
+    let cards = refreshCards();
+    if (cards.length < 3) return;
+
+    const realCardCount = cards.length - 2;
+    if (index > realCardCount) index = 1;
+    if (index < 1) index = realCardCount;
+
+    const targetCard = cards[index];
+    const cardWidth = targetCard.offsetWidth + 30;
+    const centerPosition = targetCard.offsetLeft - (scroll.clientWidth - targetCard.offsetWidth) / 2;
+
+    scroll.scrollTo({
+      left: centerPosition,
+      behavior: smooth ? "smooth" : "auto"
+    });
+
+    cards.forEach(c => c.classList.remove("active"));
+    targetCard.classList.add("active");
+  }
+
+  // Initial setup
+  setTimeout(() => {
+    setupInfinite();
+    updateSlider(false);
+  }, 150);
+
+  // Arrow buttons
+  function move(dir) {
+    index += dir;
+    updateSlider(true);
+    if (typeof playSound === "function") playSound();
+  }
+
+  if (rightBtn) rightBtn.addEventListener("click", () => move(1));
+  if (leftBtn) leftBtn.addEventListener("click", () => move(-1));
+
+  // Touch swipe
+  scroll.addEventListener("touchstart", e => {
+    isDragging = true;
+    startX = e.touches[0].pageX - scroll.offsetLeft;
+    scrollLeftPos = scroll.scrollLeft;
+  });
+
+  scroll.addEventListener("touchend", () => {
+    isDragging = false;
+    const cards = refreshCards();
+    const cardWidth = cards[1] ? cards[1].offsetWidth + 30 : 400;
+    index = Math.round(scroll.scrollLeft / cardWidth);
+    updateSlider(true);
+  });
+
+  scroll.addEventListener("touchmove", e => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - scroll.offsetLeft;
+    const walk = (x - startX) * 2.2;
+    scroll.scrollLeft = scrollLeftPos - walk;
+  });
+}
 
 });
+
 
 const feedbackForm = document.querySelector(".feedback-form");
 const popup = document.getElementById("thankPopup");
