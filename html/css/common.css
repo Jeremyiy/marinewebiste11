@@ -741,22 +741,55 @@ body {
 .marine-species,
 .species-scroll,
 .slider-container {
-  overflow-y: visible !important;
+  overflow-y: hidden !important;
   overflow-x: hidden !important;
   max-height: none !important;
 }
 
 /* Force main body scroll only */
-html, body {
+html, body { 
   overflow-y: auto !important;
   overflow-x: hidden !important;
   height: auto !important;
 }
 
+
 /* Extra safety for mobile */
 @media (max-width: 768px) {
+  
+  .close-btn {
+    display: block !important;
+  }
+
   .species-page-main,
   .conservation-page-main {
-    overflow-y: visible !important;
+    overflow-y: hidden !important;
   }
+  
+}
+}
+
+.close-btn {
+  display: none !important;
+}
+
+/* FIX TEMPORARY SCROLLBAR DURING ANIMATIONS */
+.reveal-on-scroll {
+  overflow: hidden;           /* Prevent scrollbar during animation */
+  }
+
+.reveal-on-scroll.revealed {
+  overflow: hidden;
+}
+
+/* Specific fix for Conservation and Quiz sections */
+.conservation,
+#quiz .mode-grid,
+#quiz .quiz-container {
+  overflow: hidden;
+}
+
+.conservation.revealed,
+#quiz .mode-grid.revealed {
+  overflow: hidden;
 }
