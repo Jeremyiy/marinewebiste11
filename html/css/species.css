@@ -598,3 +598,25 @@ body {
     display: none !important;
   }
 }
+
+/* ================= Hide Scrollbar ================= */
+html,
+main,  
+#species, 
+#ecosystems, 
+.conservation-page-main {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  height: 100vh !important;           /* Important for mobile */
+  scrollbar-width: thin;
+  scrollbar-color: #40E0D0 #1b263b;
+}
+
+ 
+body{
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 100vh !important;           /* Important for mobile */
+  scrollbar-width: thin;
+  scrollbar-color: #40E0D0 #1b263b;
+}

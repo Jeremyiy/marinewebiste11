@@ -358,3 +358,5 @@ window.addEventListener("scroll", () => {
     duration: 800,
     offset: 120
   });
+
+  
