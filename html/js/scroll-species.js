@@ -185,7 +185,7 @@ window.addEventListener("click", (e) => {
       });
     });
   }
- /* ================= SLIDER - FIXED INFINITE CAROUSEL ================= */
+ /* ================= SLIDER - SMOOTH INFINITE CAROUSEL ================= */
 document.querySelectorAll(".slider-container").forEach(initSlider);
 
 function initSlider(container) {
@@ -204,31 +204,23 @@ function initSlider(container) {
   }
 
   function clearPreviousClones() {
-    const allCards = scroll.querySelectorAll(".species-card");
-    allCards.forEach(card => {
-      if (card.classList.contains("clone")) {
-        card.remove();
-      }
-    });
+    scroll.querySelectorAll(".species-card.clone").forEach(card => card.remove());
   }
 
   function setupInfinite() {
-    clearPreviousClones(); // Important: remove old clones first
+    clearPreviousClones();
     let cards = refreshCards();
     if (cards.length < 2) return;
 
-    // Clone first and last cards
     const firstClone = cards[0].cloneNode(true);
     const lastClone = cards[cards.length - 1].cloneNode(true);
 
     firstClone.classList.add("clone");
     lastClone.classList.add("clone");
 
-    // Add clones
     scroll.appendChild(firstClone);
     scroll.insertBefore(lastClone, scroll.firstChild);
 
-    // Make clones clickable
     [firstClone, lastClone].forEach(clone => {
       clone.style.cursor = "pointer";
       clone.addEventListener("click", () => openModal(clone));
@@ -272,31 +264,36 @@ function initSlider(container) {
   if (rightBtn) rightBtn.addEventListener("click", () => move(1));
   if (leftBtn) leftBtn.addEventListener("click", () => move(-1));
 
-  // Touch swipe
+  // ================= IMPROVED SMOOTH SWIPE =================
   scroll.addEventListener("touchstart", e => {
     isDragging = true;
     startX = e.touches[0].pageX - scroll.offsetLeft;
     scrollLeftPos = scroll.scrollLeft;
-  });
-
-  scroll.addEventListener("touchend", () => {
-    isDragging = false;
-    const cards = refreshCards();
-    const cardWidth = cards[1] ? cards[1].offsetWidth + 30 : 400;
-    index = Math.round(scroll.scrollLeft / cardWidth);
-    updateSlider(true);
-  });
+    scroll.style.scrollBehavior = "auto";   // Disable smooth during drag
+  }, { passive: true });
 
   scroll.addEventListener("touchmove", e => {
     if (!isDragging) return;
-    e.preventDefault();
     const x = e.touches[0].pageX - scroll.offsetLeft;
-    const walk = (x - startX) * 2.2;
+    const walk = (x - startX) * 1.8;        // Smoother multiplier
     scroll.scrollLeft = scrollLeftPos - walk;
-  });
-}
+  }, { passive: true });
 
-});
+  scroll.addEventListener("touchend", () => {
+    isDragging = false;
+    scroll.style.scrollBehavior = "smooth"; // Re-enable smooth
+
+    const cards = refreshCards();
+    if (cards.length < 2) return;
+
+    const cardWidth = cards[1] ? cards[1].offsetWidth + 30 : 400;
+    index = Math.round(scroll.scrollLeft / cardWidth);
+    
+    // Snap to nearest card
+    updateSlider(true);
+  });
+
+}});
 
 
 const feedbackForm = document.querySelector(".feedback-form");
