@@ -185,7 +185,7 @@ window.addEventListener("click", (e) => {
       });
     });
   }
-/* ================= SLIDER - SMOOTH & STABLE INFINITE CAROUSEL ================= */
+/* ================= SLIDER - STABLE INFINITE CAROUSEL (Mobile Fixed) ================= */
 document.querySelectorAll(".slider-container").forEach(initSlider);
 
 function initSlider(container) {
@@ -232,6 +232,8 @@ function initSlider(container) {
     if (cards.length < 3) return;
 
     const realCardCount = cards.length - 2;
+    
+    // Loop index safely
     if (index > realCardCount) index = 1;
     if (index < 1) index = realCardCount;
 
@@ -252,7 +254,7 @@ function initSlider(container) {
   setTimeout(() => {
     setupInfinite();
     updateSlider(false);
-  }, 150);
+  }, 200);
 
   // Arrow buttons
   function move(dir) {
@@ -264,7 +266,7 @@ function initSlider(container) {
   if (rightBtn) rightBtn.addEventListener("click", () => move(1));
   if (leftBtn) leftBtn.addEventListener("click", () => move(-1));
 
-  // ================= IMPROVED MOBILE SWIPE =================
+  // ================= MOBILE SWIPE - FIXED =================
   scroll.addEventListener("touchstart", e => {
     isDragging = true;
     startX = e.touches[0].pageX - scroll.offsetLeft;
@@ -275,7 +277,7 @@ function initSlider(container) {
   scroll.addEventListener("touchmove", e => {
     if (!isDragging) return;
     const x = e.touches[0].pageX - scroll.offsetLeft;
-    const walk = (x - startX) * 1.6;        // Reduced for better control
+    const walk = (x - startX) * 1.2;   // Smoother & more controlled
     scroll.scrollLeft = scrollLeftPos - walk;
   }, { passive: true });
 
@@ -287,13 +289,14 @@ function initSlider(container) {
     if (cards.length < 3) return;
 
     const cardWidth = cards[1] ? cards[1].offsetWidth + 30 : 400;
-    const currentScroll = scroll.scrollLeft;
-    
-    // More stable snapping
+    let currentScroll = scroll.scrollLeft;
+
+    // Better snapping logic
     index = Math.round(currentScroll / cardWidth);
-    
-    // Prevent jumping to first page
+
     const realCount = cards.length - 2;
+
+    // Critical fix: Prevent unwanted jump
     if (index < 1) index = realCount;
     if (index > realCount) index = 1;
 
