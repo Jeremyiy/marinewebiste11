@@ -173,17 +173,16 @@ body {
   top: 50%;
   transform: translateY(-50%);
   background: rgba(15, 31, 38, 0.9);
-  border: 2px solid #40E0D0;
+  border: 3px solid #40E0D0;
   color: #40E0D0;
   font-size: 18px;
-  padding: 12px 14px;
+  padding: 11px 12px;
   cursor: pointer;
   z-index: 20;
   border-radius: 50%;
 }
 
-.arrow.left  { left: -15px; }
-.arrow.right { right: 115px; }
+
 /* ========================= SLIDER CENTERING FIX ========================= */
 
 
@@ -195,7 +194,7 @@ body {
 }
 
 /* ======================== ARROWS ========================= */
-@media (max-width: 768px) { /*remove arrow when in mobile*/
+@media (max-width: 768px) 
   .arrow {
     display: none !important;
   }
@@ -222,13 +221,6 @@ body {
   z-index: 10;
 }
 
-.arrow.left {
-  left: -40px;
-}
-
-.arrow.right {
-  right: -40px;
-}
 
 /* ========================= CARD ========================= */
 /* ========================= 50/50 FULL COVER SPECIES CARD ========================= */
@@ -505,8 +497,8 @@ body {
     min-width: 80px;               /* Main fix for desktop */
   }
   
-  .arrow.left { left: 10px; }
-  .arrow.right { right: 10px; }
+  .arrow.left { left: 0px; }
+  .arrow.right { right: 0px; }
 }
 
 /* ======================== SECTION DIVIDER (PREMIUM) ========================= */
