@@ -123,15 +123,12 @@
 ========================= */
 .reveal-on-scroll {
   opacity: 0;
-
-  transform: translateY(40px);
-
-  transition: 0.9s ease;
+  transform: translateY(400px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 .reveal-on-scroll.revealed {
   opacity: 1;
-
   transform: translateY(0);
 }
 
@@ -384,7 +381,7 @@
 @media (min-width: 901px) {
 
   .home-divider {
-    bottom: -25px;
+    bottom: -30px;
   }
 
 }
