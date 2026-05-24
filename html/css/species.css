@@ -603,11 +603,9 @@ body {
 html,
 main,  
 #species, 
-#ecosystems, 
-.conservation-page-main {
+#ecosystems {
   overflow-y: hidden !important;
   overflow-x: hidden !important;
-  height: 100vh !important;           /* Important for mobile */
   scrollbar-width: thin;
   scrollbar-color: #40E0D0 #1b263b;
 }
