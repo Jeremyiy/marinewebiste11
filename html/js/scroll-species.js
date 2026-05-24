@@ -185,7 +185,7 @@ window.addEventListener("click", (e) => {
       });
     });
   }
- /* ================= SLIDER - SMOOTH INFINITE CAROUSEL ================= */
+/* ================= SLIDER - SMOOTH & STABLE INFINITE CAROUSEL ================= */
 document.querySelectorAll(".slider-container").forEach(initSlider);
 
 function initSlider(container) {
@@ -264,36 +264,43 @@ function initSlider(container) {
   if (rightBtn) rightBtn.addEventListener("click", () => move(1));
   if (leftBtn) leftBtn.addEventListener("click", () => move(-1));
 
-  // ================= IMPROVED SMOOTH SWIPE =================
+  // ================= IMPROVED MOBILE SWIPE =================
   scroll.addEventListener("touchstart", e => {
     isDragging = true;
     startX = e.touches[0].pageX - scroll.offsetLeft;
     scrollLeftPos = scroll.scrollLeft;
-    scroll.style.scrollBehavior = "auto";   // Disable smooth during drag
+    scroll.style.scrollBehavior = "auto";
   }, { passive: true });
 
   scroll.addEventListener("touchmove", e => {
     if (!isDragging) return;
     const x = e.touches[0].pageX - scroll.offsetLeft;
-    const walk = (x - startX) * 1.8;        // Smoother multiplier
+    const walk = (x - startX) * 1.6;        // Reduced for better control
     scroll.scrollLeft = scrollLeftPos - walk;
   }, { passive: true });
 
   scroll.addEventListener("touchend", () => {
     isDragging = false;
-    scroll.style.scrollBehavior = "smooth"; // Re-enable smooth
+    scroll.style.scrollBehavior = "smooth";
 
     const cards = refreshCards();
-    if (cards.length < 2) return;
+    if (cards.length < 3) return;
 
     const cardWidth = cards[1] ? cards[1].offsetWidth + 30 : 400;
-    index = Math.round(scroll.scrollLeft / cardWidth);
+    const currentScroll = scroll.scrollLeft;
     
-    // Snap to nearest card
+    // More stable snapping
+    index = Math.round(currentScroll / cardWidth);
+    
+    // Prevent jumping to first page
+    const realCount = cards.length - 2;
+    if (index < 1) index = realCount;
+    if (index > realCount) index = 1;
+
     updateSlider(true);
   });
-
-}});
+}
+});
 
 
 const feedbackForm = document.querySelector(".feedback-form");
