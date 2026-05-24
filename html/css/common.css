@@ -691,7 +691,7 @@ footer {
 }
 
 /* =========================           DESKTOP             ========================= */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
   
 
   .close-btn {
@@ -729,8 +729,10 @@ body {
   .species-scroll,
   .slider-container,
   .marine-species,
-  .quiz-container {
+  .quiz-container,
+  .conservation-page-main {
     overflow-x: hidden !important;
+    overflow-y: hidden !important;
   }
 }
 #quiz section,
