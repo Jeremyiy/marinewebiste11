@@ -16,7 +16,9 @@ body {
 .section-title {
   text-align: center;
 
-  font-size: clamp(1.5rem, 5vw, 2.6rem);
+  font-size: clamp(2rem, 5vw, 4rem);
+
+  letter-spacing: 2px;
 
   margin-bottom: 25px;
 }
@@ -249,7 +251,7 @@ body {
 
 /* IMAGE SIDE - FULL COVER */
 .species-image {
-  flex: 1.7;
+  flex: 1.6;
   position: relative;
   height: 100%;
 }
@@ -289,12 +291,6 @@ body {
 .habitat span {
   color: #40E0D0;
   font-size: 0.82rem;
-}
-
-@media (min-width: 769) {
-  .species-card{
-    
-  }
 }
 
 /* ================= MOBILE - UNIFORM CARD HEIGHT ================= */

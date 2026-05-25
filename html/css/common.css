@@ -29,7 +29,10 @@ body {
 :root {
   --feedback-offset: 100px;
 }
+
 /* ================= COMPACT MOBILE MODAL ================= */
+
+
 .modal {
   display: none;
   position: fixed;
@@ -796,8 +799,4 @@ html, body {
   overflow: hidden;
 }
 
-body.modal-open {
-  overflow: hidden !important;
-  position: fixed;
-  width: 100%;
-}
+
