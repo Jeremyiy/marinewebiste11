@@ -800,3 +800,46 @@ html, body {
 }
 
 
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #081521;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* FIXED LOADER TEXT - No harsh border */
+.loader-text {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 14px;
+  color: #40E0D0;
+  text-align: center;
+  
+  /* Soft glow only */
+  text-shadow: 
+    0 0 8px rgba(64, 224, 208, 0.7),
+    0 0 16px rgba(64, 224, 208, 0.4);
+  
+  animation: pulse 1.5s infinite ease-in-out;
+  background: rgba(7, 21, 37, 0.6);   /* subtle background */
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.85; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.03); 
+  }
+}
+
