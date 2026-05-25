@@ -152,6 +152,10 @@ body {
   transform: scale(0.85);
 }
 
+.species-card .habitat {
+    display: none !important;
+}
+
 .species-card.active {
   opacity: 1;
   transform: scale(1);
